@@ -1,0 +1,829 @@
+There are 6 tables:
+1) AdvgCountries: Schema and data
+$ aws dynamodb describe-table --table-name AdvgCountries                                                                                                                                                                                       
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxxxxxxxx:table/AdvgCountries", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "CountryId", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "Name", 
+                "AttributeType": "S"
+            }
+        ], 
+        "GlobalSecondaryIndexes": [
+            {
+                "IndexSizeBytes": 21, 
+                "IndexName": "Name-index", 
+                "Projection": {
+                    "ProjectionType": "ALL"
+                }, 
+                "ProvisionedThroughput": {
+                    "NumberOfDecreasesToday": 0, 
+                    "WriteCapacityUnits": 1, 
+                    "ReadCapacityUnits": 1
+                }, 
+                "IndexStatus": "ACTIVE", 
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH", 
+                        "AttributeName": "Name"
+                    }
+                ], 
+                "IndexArn": "arn:aws:dynamodb:us-east-1:xxxxxxxxxxxx:table/AdvgCountries/index/Name-index", 
+                "ItemCount": 1
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 21, 
+        "TableName": "AdvgCountries", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "a92ffccd-2fef-49dc-8610-a0ad385c03bd", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "CountryId"
+            }
+        ], 
+        "ItemCount": 1, 
+        "CreationDateTime": 1577141395.306
+    }
+}
+Data:
+$ aws dynamodb scan --table-name AdvgCountries                                                                                                                                                                                                 
+{
+    "Count": 1, 
+    "Items": [
+        {
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Name": {
+                "S": "History"
+            }
+        }
+    ], 
+    "ScannedCount": 1, 
+    "ConsumedCapacity": null
+}
+
+2) AdvgFunFacts: Schema and data
+
+$ aws dynamodb describe-table --table-name AdvgFunFacts
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxxxxx:table/AdvgFunFacts", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "RecordNumber", 
+                "AttributeType": "S"
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 517, 
+        "TableName": "AdvgFunFacts", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "923d4e8a-e3a7-48e6-8985-bdb2aa397d97", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "RecordNumber"
+            }
+        ], 
+        "ItemCount": 5, 
+        "CreationDateTime": 1577140719.089
+    }
+}
+Data:
+$ aws dynamodb scan --table-name AdvgFunFacts                                                                                                                                                                                                  
+{
+    "Count": 5, 
+    "Items": [
+        {
+            "RecordNumber": {
+                "S": "2"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Text": {
+                "S": "Main campus for University of Oklahoma is in Norman, Oklahoma and they are football powerhouse. Boomer Sooner!!"
+            }
+        }, 
+        {
+            "RecordNumber": {
+                "S": "1"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Text": {
+                "S": "Population of Oklahoma is now close to 4 million."
+            }
+        }, 
+        {
+            "RecordNumber": {
+                "S": "5"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Text": {
+                "S": "Will Rogers was native of Oklahoma."
+            }
+        }, 
+        {
+            "RecordNumber": {
+                "S": "4"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Text": {
+                "S": "Oklahoma became state in 1907."
+            }
+        }, 
+        {
+            "RecordNumber": {
+                "S": "3"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "Text": {
+                "S": "Main campus for Oklahoma State University is in Stillwater, Oklahoma. Oklahoma State University used to be called Oklahoma Agriculture and Mechnical College."
+            }
+        }
+    ], 
+    "ScannedCount": 5, 
+    "ConsumedCapacity": null
+}
+3) AdvgGameStats: Schema and data
+$ aws dynamodb describe-table --table-name AdvgGameStats
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxxxxx:table/AdvgGameStats", 
+        "LocalSecondaryIndexes": [
+            {
+                "IndexSizeBytes": 1172, 
+                "IndexName": "PlayerNumber-ActiveFlag-index", 
+                "Projection": {
+                    "ProjectionType": "ALL"
+                }, 
+                "IndexArn": "arn:aws:dynamodb:us-east-1:xxxxxxxx:table/AdvgGameStats/index/PlayerNumber-ActiveFlag-index", 
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH", 
+                        "AttributeName": "PlayerNumber"
+                    }, 
+                    {
+                        "KeyType": "RANGE", 
+                        "AttributeName": "ActiveFlag"
+                    }
+                ], 
+                "ItemCount": 11
+            }
+        ], 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "ActiveFlag", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "CountryId", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "PlayerNumber", 
+                "AttributeType": "N"
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 1172, 
+        "TableName": "AdvgGameStats", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "ea52cc15-6775-4e66-9f01-edf62ba3317e", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "PlayerNumber"
+            }, 
+            {
+                "KeyType": "RANGE", 
+                "AttributeName": "CountryId"
+            }
+        ], 
+        "ItemCount": 11, 
+        "CreationDateTime": 1577078640.31
+    }
+}
+Data: Will be populated by application
+
+4) AdvgStories: Schema and data
+
+$ aws dynamodb describe-table --table-name AdvgStories
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxxx:table/AdvgStories", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "CountryId", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "QuestionNumber", 
+                "AttributeType": "N"
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 934, 
+        "TableName": "AdvgStories", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "229a07c2-e0d7-47af-9efe-b31f3209727a", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "CountryId"
+            }, 
+            {
+                "KeyType": "RANGE", 
+                "AttributeName": "QuestionNumber"
+            }
+        ], 
+        "ItemCount": 10, 
+        "CreationDateTime": 1577141634.361
+    }
+}
+Data: 
+$ aws dynamodb scan  --table-name AdvgStories                                                                                                                                                                                                  
+{
+    "Count": 10, 
+    "Items": [
+        {
+            "QuestionNumber": {
+                "N": "1"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you want to live in west Oklahoma, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "2"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Are you also a sooner, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "3"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Will you fight to protect your land, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "4"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you want to visit Oklahoma panhandle, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "5"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Have you seen Oklahoma musical, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "6"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you know which President signed the proclamation establishing Oklahoma as the 46th state, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "7"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you own stocks in oil and gas companies, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "8"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you know which Oklahoma governor was impeached, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "9"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you know how Oklahoma did during great depression, yes or no?"
+            }
+        }, 
+        {
+            "QuestionNumber": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "QuestionText": {
+                "S": "Do you know about Oklahoma City bombing, yes or no?"
+            }
+        }
+    ], 
+    "ScannedCount": 10, 
+    "ConsumedCapacity": null
+}
+5) AdvgStoryDetails: Schema and Data
+$ aws dynamodb describe-table --table-name AdvgStoryDetails
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxx:table/AdvgStoryDetails", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "CountryId", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "QuestionNumber", 
+                "AttributeType": "N"
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 8816, 
+        "TableName": "AdvgStoryDetails", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "75730557-660b-473f-a2ce-e18494b4e23b", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "CountryId"
+            }, 
+            {
+                "KeyType": "RANGE", 
+                "AttributeName": "QuestionNumber"
+            }
+        ], 
+        "ItemCount": 10, 
+        "CreationDateTime": 1577141838.569
+    }
+}
+
+Data:
+$ aws dynamodb scan  --table-name AdvgStoryDetails                                                                                                                                                                                             
+{
+    "Count": 10, 
+    "Items": [
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "1"
+            }, 
+            "ResponseText": {
+                "S": "Topographically, Oklahoma is situated between the Great Plains and the Ozark Plateau in the Gulf of Mexico watershed. The western part of the state is subjected to extended periods of drought and high winds which generates Dust storms. The eastern part of the state is humid subtropical climate zone. The Dry line, an imaginary line that separates moist air from an eastern body of water and dry desert air from the west, usually bisects the state and is arguably an important factor in pre-historic settlement, with agrarian tribes settling in the eastern part of the state and Hunter-gatherer tribes settling in the western part of the state."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "10"
+            }, 
+            "NoResponseText": {
+                "S": "You are smart!!"
+            }, 
+            "Tip": {
+                "S": "Western Oklahoma is more dry compared to eastern Oklahoma"
+            }, 
+            "YesWealthImpact": {
+                "N": "0"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Oh no!!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "2"
+            }, 
+            "ResponseText": {
+                "S": "Most of Oklahoma was set aside as Indian Territory before the Civil War. It was opened for general settlement around 1890, some of the settlers were called Sooners because they had already staked their land claims before the land was officially opened for settlement. Statehood came to the poor ranching and farming state in Oklahoma, but soon oil was discovered and new wealth poured into the state."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "10"
+            }, 
+            "NoResponseText": {
+                "S": "Good job, you don't want to cheat!!"
+            }, 
+            "Tip": {
+                "S": "Sooners staked their land claims before the land was officially opened for settlement."
+            }, 
+            "YesWealthImpact": {
+                "N": "0"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Yes response is only good if you are OU fan but this is history adventure!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "3"
+            }, 
+            "ResponseText": {
+                "S": "In 1830 via the passage of the Indian Removal Act, President Andrew Jackson negotiated treaties for removal with Indian tribes living east of the Mississippi River. The treaty called for the Indians to give up their eastern land for land in the west. Those who wished to stay behind were required to assimilate and become citizens in their state. For the tribes that agreed to Jackson's terms, the removal was peaceful, however those who resisted were eventually forced to leave. Part of what became Oklahoma was designated as the home for the relocation of the Five Civilized Tribes, it was at the time the only available location where the Indians would not be in the way of expansion. Later the area would be referred to as Indian Country or Canadian Indian Territory. The goal was to provide ample lands for the relocation of Native Americans in the eastern states who did not wish to assimilate."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "Bad choice!!"
+            }, 
+            "Tip": {
+                "S": "Do the right thing."
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "That is great choice!! "
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "4"
+            }, 
+            "ResponseText": {
+                "S": "There was unassigned strip of land existing between Kansas's southern border and the northern border of the Texas Panhandle at 36°30' north, a neutral strip or No Man's Land that eventually became the Oklahoma Panhandle."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "10"
+            }, 
+            "NoResponseText": {
+                "S": "Good choice!! "
+            }, 
+            "Tip": {
+                "S": "it used to be no man's land."
+            }, 
+            "YesWealthImpact": {
+                "N": "0"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Too bad, it used to be no man's land!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "5"
+            }, 
+            "ResponseText": {
+                "S": "Oklahoma is best known to the rest of the world for its frontier history, famously represented in the 1943 Broadway hit musical Oklahoma! and its 1955 cinema version. The musical is based on Lynn Riggs' 1931 play, Green Grow the Lilacs. It is set in Oklahoma Territory outside the town of Claremore."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "What? I cannot believe that!! "
+            }, 
+            "Tip": {
+                "S": "I hope you like performance arts"
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Isn't that a great show? good choice friend!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "6"
+            }, 
+            "ResponseText": {
+                "S": "Murray, known for his eccentricities and political astuteness, foresaw this possibility prior to the constitutional convention. When Johnston asked Murray to represent the Chickasaw Nation during Sequoyah's attempt at statehood, Murray predicted the plan would not succeed in Washington, D.C.. He suggested that if the attempt failed, the Indian Territory should work with the Oklahoma Territory to become one state. President Theodore Roosevelt and Congress turned down the Indian Territory proposal.Seeing an opportunity for statehood, Murray and Haskell proposed another convention for the combined territories to be named Oklahoma. In 1906, the Oklahoma Enabling Act was passed by the U.S. Congress and approved by President Roosevelt. The act established several specific requirements for the proposed constitution. Using the constitution from the Sequoyah convention as a basis of the new state constitution, Haskell and Murray returned to Washington with the proposal for statehood. On November 16, 1907 President Theodore Roosevelt signed the proclamation establishing Oklahoma as the nation's 46th state."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "oh boy!!"
+            }, 
+            "Tip": {
+                "S": "Oklahoma became state in 1907"
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "You know your Oklahoma history!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "7"
+            }, 
+            "ResponseText": {
+                "S": "Although the first oil well in the United States was completed July 1850 in the old Cherokee Nation near Salina, it was in the early 20th century the oil business really began to get underway. Huge pools of underground oil were discovered in places like Glenpool near Tulsa. Many flooded into the state to make money. Many of the old money elite families of Oklahoma can date their rise to this time. Throughout the 1920s, new oil fields were continually discovered and Oklahoma produced over 1.8 billion barrels of petroleum, valued at over 3.5 million dollars for the decade. In 1920 the spectacular Osage County oil field was opened, followed in 1926 by the Greater Seminole Oil Field. However during Great Depression Oklahoma and Texas oil was flooding the market and prices fell to pennies a gallon."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "Too bad!!!"
+            }, 
+            "Tip": {
+                "S": "Oklahoma has lot of oil fields."
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Good choice, and hopefully stock returns were in your favor!! "
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "8"
+            }, 
+            "ResponseText": {
+                "S": "Disgruntled Oklahoma farmers and laborers handed left-wing Democrat Jack C. Walton an easy election victory in 1922 as governor. One scandal followed another, Walton's questionable administrative practices included payroll padding, jailhouse pardons, removal of college administrators, and an enormous increase in the governor's salary. The conservative elements successfully petitioned for a special legislative recall session. To regain the initiative, Walton retaliated by declaration of martial law, and employment of outsiders to 'keep the peace.' He declared martial law in the entire state and tried to call out the National Guard to block the legislature from holding the special session. Walton's efforts failed, legislators charged Walton with corruption, impeached him, and removed him from office in 1923."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "You might want to take more history lessons, ha ha!! "
+            }, 
+            "Tip": {
+                "S": "It happened in 1923."
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Wow, that is impressive!!"
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "9"
+            }, 
+            "ResponseText": {
+                "S": "The Great Depression lasted from 1929 to the late 1930s. Times were especially hard in 1930–33, as the prices of oil and farm products plunged, while debts remained high. Many banks and businesses went bankrupt. The Depression was made much worse for parts of the state by the Dust Bowl conditions. Farmers were hit the hardest and many relocated to the cities and established poor communities known as Hoovervilles. It also initiated a mass migration to California of in search of a better life. The vast majority of the people, both staying in and fleeing from Oklahoma, suffered great poverty in the Depression years."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "What? I cannot believe it!! "
+            }, 
+            "Tip": {
+                "S": "Oklahoma did similar to rest of the country."
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "Nice!! You are on roll!! "
+            }
+        }, 
+        {
+            "YesEnergyImpact": {
+                "N": "0"
+            }, 
+            "QuestionNumber": {
+                "N": "10"
+            }, 
+            "ResponseText": {
+                "S": "On April 19, 1995, in the Oklahoma City bombing, Gulf War veteran Timothy McVeigh bombed the Alfred P. Murrah Federal Building, killing 168 people, including 19 children. Timothy McVeigh and Terry Nichols were the convicted perpetrators of the attack, although many believe others were involved. Timothy McVeigh was later sentenced to death by lethal injection, while his partner, Terry Nichols, who was convicted of 161 counts of first degree murder received life in prison without the possibility of parole. If you visit Oklahoma City, Oklahoma City memorial is a great place to visit and learn more about this."
+            }, 
+            "NoEnergyImpact": {
+                "N": "0"
+            }, 
+            "NoWealthImpact": {
+                "N": "0"
+            }, 
+            "NoResponseText": {
+                "S": "Not a fun thing to know but we have to learn about this too!! "
+            }, 
+            "Tip": {
+                "S": "It happened in 1995"
+            }, 
+            "YesWealthImpact": {
+                "N": "10"
+            }, 
+            "CountryId": {
+                "S": "1"
+            }, 
+            "YesResponseText": {
+                "S": "You have good knowledge, Oklahomans came together and helped each other after bombing!! "
+            }
+        }
+    ], 
+    "ScannedCount": 10, 
+    "ConsumedCapacity": null
+}
+6) AdvgUsers: Schema and data
+
+$ aws dynamodb describe-table --table-name AdvgUsers
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-1:xxxxxxxx:table/AdvgUsers", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "MaxTurns", 
+                "AttributeType": "N"
+            }, 
+            {
+                "AttributeName": "PlayerNumber", 
+                "AttributeType": "N"
+            }, 
+            {
+                "AttributeName": "UserId", 
+                "AttributeType": "S"
+            }
+        ], 
+        "GlobalSecondaryIndexes": [
+            {
+                "IndexSizeBytes": 12569, 
+                "IndexName": "MaxTurns-index", 
+                "Projection": {
+                    "ProjectionType": "ALL"
+                }, 
+                "ProvisionedThroughput": {
+                    "NumberOfDecreasesToday": 0, 
+                    "WriteCapacityUnits": 1, 
+                    "ReadCapacityUnits": 1
+                }, 
+                "IndexStatus": "ACTIVE", 
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH", 
+                        "AttributeName": "MaxTurns"
+                    }
+                ], 
+                "IndexArn": "arn:aws:dynamodb:us-east-1:xxxxxxx:table/AdvgUsers/index/MaxTurns-index", 
+                "ItemCount": 24
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 1, 
+            "ReadCapacityUnits": 1
+        }, 
+        "TableSizeBytes": 12569, 
+        "TableName": "AdvgUsers", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "2874643c-2def-46d0-b2a3-cff2e1d421fd", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "UserId"
+            }, 
+            {
+                "KeyType": "RANGE", 
+                "AttributeName": "PlayerNumber"
+            }
+        ], 
+        "ItemCount": 24, 
+        "CreationDateTime": 1577140503.268
+    }
+}
+Data: Will be populated by app
