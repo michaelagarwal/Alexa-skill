@@ -11,4 +11,6 @@ Here is code for Adventure Oklahoma Skill.
   This is for Alexa devices with display
 5) Alexa manifest <br>
   This is the JSON representation of manifest from Alexa Developer Console
-
+6) DynamoDB folder <br)
+  Contains the schema and data for 6 tables
+  
