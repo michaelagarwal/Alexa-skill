@@ -1,6 +1,6 @@
 # Alexa-skill
-# To see this in action:
-# Say "Alexa, Enable Adventure Oklahoma" and then say "Alexa, Open Adventure Oklahoma"
+### To see this in action:
+### Say "Alexa, Enable Adventure Oklahoma" and then say "Alexa, Open Adventure Oklahoma"
 Here is code for Adventure Oklahoma Skill.
 
 1) You need Alexa Skill Kit - Python library <br>
