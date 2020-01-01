@@ -1,7 +1,7 @@
 # Alexa-skill
 Here is code for Adventure Oklahoma Skill.
 
-1) You need Alexa Skill Kit - Python library
+1) You need Alexa Skill Kit - Python library <br>
   $ pip install ask-sdk
 2) Photos folder contains all media files
 3) Lambda folder contains main back-end code
