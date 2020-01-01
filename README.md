@@ -1,2 +1,2 @@
 # Alexa-skill
-Here is code for Adventure Oklahoma Skll
+Here is code for Adventure Oklahoma Skill
