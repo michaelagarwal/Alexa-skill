@@ -1,0 +1,129 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "adventure oklahoma",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "I am lost in this adventure",
+                        "I am lost"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "StartAdventureIntent",
+                    "slots": [
+                        {
+                            "name": "State",
+                            "type": "AMAZON.US_STATE"
+                        }
+                    ],
+                    "samples": [
+                        "play",
+                        "start",
+                        "start adventure",
+                        "start game",
+                        "play game",
+                        "explore {State}",
+                        "I like to visit {State}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SpeakToGuideIntent",
+                    "slots": [],
+                    "samples": [
+                        "tip",
+                        "What is tip",
+                        "give tip",
+                        "give me tip",
+                        "speak to guide",
+                        "buy tips",
+                        "I would like a tip",
+                        "I will like to buy tips",
+                        "speak to the guide",
+                        "I will like to buy tip",
+                        "I need guide",
+                        "I'd like to tip"
+                    ]
+                },
+                {
+                    "name": "RefundProductIntent",
+                    "slots": [],
+                    "samples": [
+                        "I will like a refund",
+                        "cancel my purchase",
+                        "refund money",
+                        "Cancel purchase",
+                        "Refund",
+                        "I'd like a refund"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
